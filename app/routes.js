@@ -9,14 +9,26 @@ module.exports = function (app, passport, db) {
 
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function (req, res) {
-    db.collection('books').find().toArray((err, result) => {
+    db.collection('board').find().toArray((err, result) => {
       if (err) return console.log(err)
       res.render('profile.ejs', {
-        user: req.user,
-        books: result
+        board: result
       })
     })
   });
+
+  app.post('/jobpost', (req, res) => {
+    db.collection('board').save({
+      company: req.body.company,
+      jobTitle: req.body.jobTitle,
+      salary: req.body.salary,
+      level: req.body.level
+    }, (err, result) => {
+      if (err) return console.log(err)
+      console.log('saved to database')
+      res.redirect('/profile')
+    })
+  })
 
   // LOGOUT ==============================
   app.get('/logout', function (req, res) {
@@ -25,40 +37,13 @@ module.exports = function (app, passport, db) {
   });
 
 
-  app.get('/searchBooks', function (req, res) {
-    const bookquery = req.query.bookName
-    console.log(bookquery)
-    fetch(`https://www.googleapis.com/books/v1/volumes?q=${bookquery}`)
-      .then(res => res.json())
-      .then(data => {
-        res.end(JSON.stringify(data));
-      })
-  });
-
-
-
-  const fetch = require('node-fetch');
-
-
-
-  app.post('/addbook', (req, res) => {
-    db.collection('books').save({
-      name: req.body.name,
-      author: req.body.author,
-      image: req.body.image
-    }, (err, result) => {
-      if (err) return console.log(err)
-      console.log('saved to database')
-      res.redirect('/profile')
-    })
-  })
 
 
 
 
-  app.delete('/deletebook', (req, res) => {
-    db.collection('books').findOneAndDelete({
-      name: req.body.name
+  app.delete('/deletejob', (req, res) => {
+    db.collection('board').findOneAndDelete({
+      company: req.body.company
     }, (err, result) => {
       if (err) return res.send(500, err)
       res.send('Message deleted!')

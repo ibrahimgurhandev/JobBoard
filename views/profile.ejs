@@ -20,7 +20,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#">BOOKMARK</a>
+    <a class="navbar-brand" href="#">JOB BOARD</a>
     <button class="navbar-toggler" type="button"
       data-toggle="collapse" data-target="#navbarResponsive"
       aria-controls="navbarResponsive" aria-expanded="false"
@@ -31,8 +31,6 @@
   </div>
 </nav>
 
-
-
 <body>
   <div class="container">
 
@@ -42,87 +40,52 @@
     </div>
 
 
-    <div class="row">
+    <form action="/jobpost" method="POST">
+      <h2>Add A Job Posting</h2>
+      <input id="search" type="text"
+        placeholder="Enter company name" name="company">
+      <input id="search" type="text"
+        placeholder="Enter Job Title" name="jobTitle">
+      <input id="search" type="text"
+        placeholder="Enter job Salary" name="salary">
+      <input id="search" type="text"
+        placeholder="Position Level, entry,junior senior...."
+        name="level">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  </div>
+  <hr>
 
 
-      <div class="col-sm-12">
-
-        <h2>Search books</h2>
 
 
-        <input id="search" type="text" placeholder="Type book here"
-          name="name">
-        <button id="searchBtn">Submit</button>
-        <section id="bookResults"> </section>
+  <hr>
+  <div class="container">
 
-
-
+    <% for(var i=0; i<board.length; i++) {%>
+    <div class="card bg-light mb-3" style="max-width: 18rem;">
+      <div class="card-header"> <%= board[i].company %></div>
+      <div class="card-body">
+        <h5 class="card-title"> <%= board[i].jobTitle %></h5>
+        <p class="card-text">
+          <%= board[i].salary %></p>
+        <p class="card-text">
+          <%= board[i].level %> Level</p>
       </div>
-
-
+      <button class="btn btn-primary trash">Remove Job
+        Posting</button>
     </div>
 
-    <section class="gap"></section>
-
-    <h1>BOOKMARKED BOOKS</h1>
-
-    <div class="row text-center">
-      <% for(var i=0; i<books.length; i++) {%>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top savedImage"
-            src="<%= books[i].image %>" />
-
-          <div class="card-body">
-            <h4 class="card-title"><%= books[i].name %></h4>
-            <p class="card-text"> by
-              <%= books[i].author %></p>
-            <button class="btn btn-primary trash">Remove from
-              Bookmarks</button>
-          </div>
-
-
-        </div>
-      </div>
-      <% } %>
-    </div>
-
+    <% } %>
   </div>
 
 
-
-
-
-
-  <!-- LOCAL INFORMATION
-  <div class="col-sm-6 btm ">
-    <div class="well">
-      <h3><span class="fa fa-user"></span> Local</h3>
-
-      <% if (user.local.email) { %>
-      <p>
-        <strong>id</strong>: <%= user._id %><br>
-        <strong>email</strong>: <%= user.local.email %><br>
-        <strong>password</strong>: <%= user.local.password %>
-      </p>
-
-      <a href="/unlink/local" class="btn btn-default">Unlink</a>
-      <% } else { %>
-      <a href="/connect/local" class="btn btn-default">Connect
-        Local</a>
-      <% } %>
-
-    </div>
-  </div>
- -->
-
-
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
+  <script src="vendor/jquery/jquery.min.js">
+  </script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js">
+  </script>
   <script src="main.js"></script>
 
 </body>

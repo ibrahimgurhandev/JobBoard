@@ -4,25 +4,11 @@ body {
   font-size: 20px;
 }
 
-img {
-  height: 200px;
-}
-
-.btm {
-  margin-top: 90px;
-}
-
 .grid {
   display: flex;
   flex-flow: row wrap;
 }
 
-.eachBook {
-  display: flex;
-  flex-direction: column;
-  margin-right: 20px;
-  margin-bottom: 8px;
-}
 
 .flex {
   display: flex;
@@ -31,41 +17,20 @@ img {
 
 }
 
-.eachBook2 {
-  display: flex;
-  flex-direction: column;
-  margin-right: 15px;
-  margin-bottom: 8px;
-}
+
 
 button {
   margin-bottom: 8px;
   width: 130px;
 }
 
-.savedImage {
-  width: 95%;
-  margin: auto;
-  margin-top: 5px;
-
-}
-
-.searchImage {
-  width: 80%;
-  max-width: 120px;
-}
-
-
-
-.removeBtn {
-  width: 170px;
-}
 
 
 
 
 .container {
   text-align: center;
+  display: flex;
 }
 
 .gap {
@@ -80,13 +45,9 @@ button {
 
 }
 
-@media (min-width: 992px) {
-  .col-lg-3 {
-    max-width: 15%;
-    min-width: 15%;
+.contain {}
 
+.card {
 
-  }
+  margin: 5px;
 }
-
-#booktitle {}
