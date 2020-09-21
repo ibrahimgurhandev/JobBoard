@@ -1,6 +1,6 @@
 Job Board built with Express Js
 
-![job board](https://i.imgur.com/6MKO5Ls.png
+![job board](https://i.imgur.com/6MKO5Ls.png)
 
 ## Installation
 
